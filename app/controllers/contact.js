@@ -1,5 +1,5 @@
 import Controller from "@ember/controller";
-import { match, not, and } from "@ember/object/computed";
+import { match, not, and, gte } from "@ember/object/computed";
 
 export default Controller.extend({
   contactHeader: "Contact Us",
@@ -8,9 +8,10 @@ export default Controller.extend({
   textContent: "",
 
   isValidEmail: match("emailAddress", /^.+@.+\..+$/),
-  isValidMessage: match("contactText", /^\w+$/),
-  isBothTrue: and("emailAddress", "contactText"),
-  isDisabled: not("isBothTrue"),
+  isMessageLongEnough: gte("contactText", /^\w+$/),
+
+  isValid: and("isValidEmail", "isMessageLongEnough"),
+  isDisabled: not("isValid"),
 
   actions: {
     sendMessage() {
