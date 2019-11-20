@@ -7,7 +7,7 @@ module.exports = function(environment) {
     rootURL: '/',
     locationType: 'auto',
       firebase: {
-        apiKey: "AIzaSyBJml-cR2BWYSGzAhywc7NUjBpTGKmqh1c",
+        apiKey: "",
         authDomain: "library-app-dawnabelle.firebaseapp.com",
         databaseURL: "https://library-app-dawnabelle.firebaseio.com",
         projectId: "library-app-dawnabelle",
