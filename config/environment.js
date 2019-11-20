@@ -7,10 +7,13 @@ module.exports = function(environment) {
     rootURL: '/',
     locationType: 'auto',
       firebase: {
-    apiKey: 'xyz',
-    authDomain: 'YOUR-FIREBASE-APP.firebaseapp.com',
-    databaseURL: 'https://YOUR-FIREBASE-APP.firebaseio.com',
-    storageBucket: 'YOUR-FIREBASE-APP.appspot.com',
+        apiKey: "",
+        authDomain: "library-app-dawnabelle.firebaseapp.com",
+        databaseURL: "https://library-app-dawnabelle.firebaseio.com",
+        projectId: "library-app-dawnabelle",
+        storageBucket: "library-app-dawnabelle.appspot.com",
+        messagingSenderId: "954349660044",
+        appId: "1:954349660044:web:fec7d0ef0d4ec88067d8a9"
   },
 
     EmberENV: {
@@ -31,7 +34,7 @@ module.exports = function(environment) {
   };
 
   if (environment === 'development') {
-    // ENV.APP.LOG_RESOLVER = true;
+    // ENV.myApiKey = process.env.apiKey;
     // ENV.APP.LOG_ACTIVE_GENERATION = true;
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
