@@ -2,15 +2,22 @@ import Route from '@ember/routing/route';
 
 export default Route.extend({
   model() {
-    return this.store.findAll("library");
+    return this.store.createRecord("contact");
   }, 
 
   actions: {
-    deleteLibrary(library) {
+    saveContact(newcontact) {
+      newcontact.save().then(() => this.transitionTo("contacts"));
+    },
+    willTransition() {
+      // rollbackAttributes() removes the recofrd from the store if the model 'is new'
+      this.controller.get("model").rollbackAttributes();
+    },
+    deleteContact(contact) {
       let confirmation = confirm("Are you sure?");
 
       if (confirmation) {
-        library.destroyRecord();
+        contact.destroyRecord();
       }
     }
   }
