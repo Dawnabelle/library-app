@@ -1,0 +1,13 @@
+<div class="panel panel-default contact-item">
+    <div class="panel-heading">
+    </div>
+    <div class="panel-body">
+        <p>Message: {{item.message}}</p>
+        <p>Email Address: {{item.email}}</p>
+    </div>
+    <div class="panel-footer text-right">
+      {{!-- A block component --}}
+      {{!-- code that this wraps around will be injected in the yield  --}}
+      {{yield}}
+    </div>
+</div>
