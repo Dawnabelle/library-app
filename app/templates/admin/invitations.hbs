@@ -13,6 +13,9 @@
         <th>{{invitation.id}}</th>
         <td>{{invitation.email}}</td>
       </tr>
+      <div class="panel-footer text-right">
+        <button class="btn btn-danger btn-xs" {{action 'deleteInvitation' invitation}}>Delete</button>
+      </div>
     {{/each}}
   </tbody>
 </table>
