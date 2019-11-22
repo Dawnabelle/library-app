@@ -1,8 +1,18 @@
 import Route from '@ember/routing/route';
+import { moduleForModel } from 'ember-qunit';
 
 export default Route.extend({
   model() {
     return this.store.createRecord("library");
+  },
+  setupController(controller, model) {
+    this._super(controller, model);
+    
+    controller.set("title", "Create a new library");
+    controller.set("buttonLabel", "Create");
+  },
+  renderTemplate() {
+    this.render("libraries/form");
   },
   actions: {
     saveLibrary(newLibrary) {
@@ -10,7 +20,8 @@ export default Route.extend({
     },
     willTransition() {
       // rollbackAttributes() removes the recofrd from the store if the model 'is new'
-      this.controller.get("model").rollbackAttributes();
+      this.controller.get("model");
+        moduleForModel.destroyRecord();
     }
   }
 });

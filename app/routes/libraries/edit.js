@@ -6,7 +6,15 @@ export default Route.extend({
     // the id comes from the url 
     return this.store.findRecord('library', params.library_id);
   },
+  setupController(controller, model) {
+    this._super(controller, model);
 
+    controller.set("title", "Edit library");
+    controller.set("buttonLabel", "Save Changes");
+  },
+  renderTemplate() {
+    this.render("libraries/form");
+  },
   actions: {
     saveLibrary(library) {
       // saves changes and redirects user to main libraries page
