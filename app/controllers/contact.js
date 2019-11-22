@@ -4,21 +4,26 @@ import { match, not, and, gte } from "@ember/object/computed";
 export default Controller.extend({
   contactHeader: "Contact Us",
   contactResponseMessage: "",
-  email: "",
-  message: "",
+  contactEmail: "",
+  contactMessage: "",
 
-  isValidEmail: match("email", /^.+@.+\..+$/),
-  isMessageLongEnough: gte("message", /^\w+$/),
+  isValidEmail: match("contactEmail", /^.+@.+\..+$/),
+  isMessageLongEnough: gte("contactMessage", /^\w+$/),
 
   isValid: and("isValidEmail", "isMessageLongEnough"),
   isDisabled: not("isValid"),
 
   actions: {
     sendMessage() {
-      alert(`Saving your message ${this.get("message")} from ${this.get("email")}.`);
-      this.set("contactResponseMessage", `Thank you! We've sent your message from ${this.get('emailAddress')}.`);
-      this.set("email", " ");
-      this.set("message", " "); 
+      const emailContact = this.get("contactEmail");
+      const messageContact = this.get("contactMessage");
+
+      const saveContact = this.store.createRecord("contact", { emailContact, messageContact });
+      saveContact.save().then(response => {
+        this.set("contactResponseMessage", `Thank you! We've sent your message from ${response.get('emailAddress')}.`);
+        this.set("contactEmail", " ");
+        this.set("contactMessage", " "); 
+      })
     }
   }
 });
